@@ -1,0 +1,283 @@
+DROP DATABASE  BDAMIS;
+
+CREATE DATABASE  BDAMIS;
+USE BDAMIS;
+# -----------------------------------------------------------------------------
+#       TABLE : FONCTION
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  FONCTION
+ (
+   NUMFONCTION INTEGER(2) NOT NULL AUTO_INCREMENT ,
+   NUMAMIS SMALLINT(1) NOT NULL  ,
+   NOMFONCTION CHAR(255) NULL  
+   , PRIMARY KEY (NUMFONCTION) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE FONCTION
+# -----------------------------------------------------------------------------
+
+
+CREATE UNIQUE INDEX I_FK_FONCTION_AMIS
+     ON FONCTION (NUMAMIS ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : ACTION
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  ACTION
+ (
+   NUMACTION INTEGER(2) NOT NULL AUTO_INCREMENT ,
+   NUMAMIS SMALLINT(1) NOT NULL  ,
+   NUMCOMMISSION INTEGER(2) NULL  ,
+   NOMACTION CHAR(255) NULL  ,
+   DATEDEBUTACTION DATE NULL  ,
+   DUREEACTION INTEGER(2) NULL  ,
+   FONDCOLLECTEACTION DECIMAL(13,2) NULL  
+   , PRIMARY KEY (NUMACTION) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE ACTION
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_ACTION_AMIS
+     ON ACTION (NUMAMIS ASC);
+
+CREATE  INDEX I_FK_ACTION_COMMISSION
+     ON ACTION (NUMCOMMISSION ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : DINER
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  DINER
+ (
+   NUMDINER CHAR(32) NOT NULL  ,
+   DATEDINER DATE NULL  ,
+   LIEUDINER CHAR(255) NULL  ,
+   PRIXDINER DECIMAL(13,2) NULL  
+   , PRIMARY KEY (NUMDINER) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : COMMISSION
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  COMMISSION
+ (
+   NUMCOMMISSION INTEGER(2) NOT NULL AUTO_INCREMENT ,
+   NOMCOMMISSION CHAR(255) NULL  
+   , PRIMARY KEY (NUMCOMMISSION) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : AMIS
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  AMIS
+ (
+   NUMAMIS SMALLINT(1) NOT NULL AUTO_INCREMENT ,
+   NOMAMIS CHAR(255) NULL  ,
+   PRENOMAMIS CHAR(255) NULL  ,
+   TELEPHONEFIXEAMIS CHAR(10) NULL  ,
+   TELEPHONEPORTAMIS CHAR(10) NULL  ,
+   EMAILAMIS CHAR(255) NULL  ,
+   NUMRUEAMIS INTEGER(2) NULL  ,
+   ADRESSEAMIS CHAR(255) NULL  ,
+   VILLEAMIS CHAR(255) NULL  ,
+   CPAMIS CHAR(5) NULL  ,
+   DATEENTREECLUBAMIS DATE NULL  
+   , PRIMARY KEY (NUMAMIS) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PARAMETRE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  PARAMETRE
+ (
+   NUMPARAMETRE INTEGER(2) NOT NULL AUTO_INCREMENT ,
+   MONTANTCOTISATIONANNUELLE DECIMAL(13,2) NULL  
+   , PRIMARY KEY (NUMPARAMETRE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PARTICIPER
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  PARTICIPER
+ (
+   NUMAMIS SMALLINT(1) NOT NULL  ,
+   NUMCOMMISSION INTEGER(2) NOT NULL  ,
+   NUMFONCTION INTEGER(2)   
+   , PRIMARY KEY (NUMAMIS,NUMCOMMISSION) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE PARTICIPER
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_PARTICIPER_AMIS
+     ON PARTICIPER (NUMAMIS ASC);
+
+CREATE  INDEX I_FK_PARTICIPER_COMMISSION
+     ON PARTICIPER (NUMCOMMISSION ASC);
+
+CREATE  INDEX I_FK_PARTICIPER_FONCTION
+     ON PARTICIPER (NUMFONCTION ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : PARRAINER
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  PARRAINER
+ (
+   NUMAMIS SMALLINT(1) NOT NULL  ,
+   NUMAMIS_1 SMALLINT(1) NOT NULL  ,
+   NUMAMIS_2 SMALLINT(1) NOT NULL  
+   , PRIMARY KEY (NUMAMIS,NUMAMIS_1,NUMAMIS_2) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE PARRAINER
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_PARRAINER_AMIS
+     ON PARRAINER (NUMAMIS ASC);
+
+CREATE  INDEX I_FK_PARRAINER_AMIS1
+     ON PARRAINER (NUMAMIS_1 ASC);
+
+CREATE  INDEX I_FK_PARRAINER_AMIS2
+     ON PARRAINER (NUMAMIS_2 ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : PARTICIPANT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  PARTICIPANT
+ (
+   NUMACTION INTEGER(2) NOT NULL  ,
+   NUMAMIS SMALLINT(1) NOT NULL  
+   , PRIMARY KEY (NUMACTION,NUMAMIS) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE PARTICIPANT
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_PARTICIPANT_ACTION
+     ON PARTICIPANT (NUMACTION ASC);
+
+CREATE  INDEX I_FK_PARTICIPANT_AMIS
+     ON PARTICIPANT (NUMAMIS ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : MANGER
+# -----------------------------------------------------------------------------
+
+CREATE TABLE  MANGER
+ (
+   NUMDINER CHAR(32) NOT NULL  ,
+   NUMAMIS SMALLINT(1) NOT NULL  ,
+   NBPARTICIPANT INTEGER(2) NULL  
+   , PRIMARY KEY (NUMDINER,NUMAMIS) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE MANGER
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_MANGER_DINER
+     ON MANGER (NUMDINER ASC);
+
+CREATE  INDEX I_FK_MANGER_AMIS
+     ON MANGER (NUMAMIS ASC);
+
+
+# -----------------------------------------------------------------------------
+#       CREATION DES REFERENCES DE TABLE
+# -----------------------------------------------------------------------------
+
+
+ALTER TABLE FONCTION 
+  ADD FOREIGN KEY FK_FONCTION_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE ACTION 
+  ADD FOREIGN KEY FK_ACTION_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE ACTION 
+  ADD FOREIGN KEY FK_ACTION_COMMISSION (NUMCOMMISSION)
+      REFERENCES COMMISSION (NUMCOMMISSION) ;
+
+
+ALTER TABLE PARTICIPER 
+  ADD FOREIGN KEY FK_PARTICIPER_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE PARTICIPER 
+  ADD FOREIGN KEY FK_PARTICIPER_COMMISSION (NUMCOMMISSION)
+      REFERENCES COMMISSION (NUMCOMMISSION) ;
+
+
+ALTER TABLE PARTICIPER 
+  ADD FOREIGN KEY FK_PARTICIPER_FONCTION (NUMFONCTION)
+      REFERENCES FONCTION (NUMFONCTION) ;
+
+
+ALTER TABLE PARRAINER 
+  ADD FOREIGN KEY FK_PARRAINER_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE PARRAINER 
+  ADD FOREIGN KEY FK_PARRAINER_AMIS1 (NUMAMIS_1)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE PARRAINER 
+  ADD FOREIGN KEY FK_PARRAINER_AMIS2 (NUMAMIS_2)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE PARTICIPANT 
+  ADD FOREIGN KEY FK_PARTICIPANT_ACTION (NUMACTION)
+      REFERENCES ACTION (NUMACTION) ;
+
+
+ALTER TABLE PARTICIPANT 
+  ADD FOREIGN KEY FK_PARTICIPANT_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
+
+ALTER TABLE MANGER 
+  ADD FOREIGN KEY FK_MANGER_DINER (NUMDINER)
+      REFERENCES DINER (NUMDINER) ;
+
+
+ALTER TABLE MANGER 
+  ADD FOREIGN KEY FK_MANGER_AMIS (NUMAMIS)
+      REFERENCES AMIS (NUMAMIS) ;
+
