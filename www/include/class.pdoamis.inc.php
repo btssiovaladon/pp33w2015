@@ -68,6 +68,11 @@ class PdoGsb{
 			where monchamps3 ='$param3'";
 			PdoGsb::$monPdo->exec($req);
 		}
+		
+		public function majCotisation($montant){
+			$req = "update parametre set MONTANTCOTISATIONANNUELLE = '$montant'";
+			PdoGsb::$monPdo->exec($req);
+		}
 	}
 
 /**

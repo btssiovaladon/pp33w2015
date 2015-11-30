@@ -5,7 +5,7 @@
 		
 			<fieldset>
 				<label>Montant de la cotisation :</label>
-				<input type="text">
+				<input name="montant" id="cotisation" type="text">
 			</fieldset>
 			<div class="piedForm">
 				<input id="ok" type="submit" value="Valider" />
