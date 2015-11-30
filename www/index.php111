@@ -1,0 +1,10 @@
+<?php
+	
+
+	$uc = $_REQUEST['uc'];
+	switch($uc){
+	case 'cotisation':{
+		include("controleur/c_cotisation.php");break;
+	}
+	}
+?>
