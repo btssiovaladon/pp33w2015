@@ -1,21 +1,10 @@
 <?php
-require_once("include/fct.inc.php");
-require_once ("include/class.pdoami.inc.php");
-include("vues/v_entete.php");
-include("vues/v_menu");
-session_start();
-$pdo = PdoGsb::getPdoGsb();
-$estConnecte = estConnecte();
-if(!isset($_REQUEST['uc']) || !$estConnecte){
-     $_REQUEST['uc'] = 'connexion';
-}	 
-$uc = $_REQUEST['uc'];
-switch($uc){
-	case 'connexion':{
-		include("controleurs/c_connexion.php");
-		break;
-	}
-}
-include("vues/v_pied.php");
-?>
 
+$uc=$_GET['uc'];
+
+switch ($uc){
+	case 'SuppAction':
+		include_once("./controleur/c_SuppAction.php");
+		break;
+}
+?>
