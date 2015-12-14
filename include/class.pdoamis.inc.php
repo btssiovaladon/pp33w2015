@@ -147,6 +147,23 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
+		
+		
+		public function getAction($idAction)
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION WHERE NUMACTION='.$idAction;
+			$res=PdoGsb::$monPdo->query($sql);
+			return $res->fetch();
+		}
+		
+/**
+ * AUTRE
+ */
+
+/**
+ * FONCTION PERMETTANT LE CHOIX DES ACTIONS
+ */
+
 		public function pdo_getListeAmis()
 		{
 			$req = "select * from amis ";
@@ -156,6 +173,21 @@ class PdoGsb{
 		}
 		
 
+
+	/**
+	 * Description de la fonction
+	 
+	*/	
+		public function getAllAction()
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION';
+			$res=PdoGsb::$monPdo->query($sql);
+			
+			return $res->fetchAll();
+		}
+		
+		
+		
 /**
  * AUTRE
  */
@@ -165,6 +197,7 @@ class PdoGsb{
  
 =======
  
+
  /**
 	 * Description de la fonction
 	 
@@ -178,7 +211,10 @@ class PdoGsb{
 			
 			return $res->fetchAll();
 		}
+<<<<<<< HEAD
 
 >>>>>>> 0cfee66832a92dae8af6f0055e4d9bf2bdf51da7:include/class.pdoamis.inc.php
+=======
+>>>>>>> f2f6a80893542d39634e553e38e08327e5e478e3
 }
 ?>
