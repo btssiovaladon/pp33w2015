@@ -64,6 +64,7 @@ class PdoGsb{
 			PdoGsb::$monPdo->exec($req);
 		}	
 	
+	
 /**
  * FONCTION PERMETTANT DE METTRE A JOUR UNE LIGNE
  */
@@ -86,6 +87,13 @@ class PdoGsb{
 			$req = "update parametre set MONTANTCOTISATIONANNUELLE = '$montant' where NUMPARAMETRE='1'";
 			PdoGsb::$monPdo->exec($req);
 		}
+		public function pdo_maj_amis($num,$nom,$prenom,$tel_fix,$tel,$email,$rue,$adresse,$ville,$cp,$date_entree_club){
+			$req = "update amis set NOMAMIS = '$nom', PRENOMAMIS= '$prenom', TELEPHONEFIXEAMIS = '$tel_fix', TELEPHONEPORTAMIS= '$tel',
+						EMAILAMIS = '$email', NUMRUEAMIS= '$rue', ADRESSEAMIS = '$adresse', VILLEAMIS= '$ville',
+						CPAMIS = '$cp', DATEENTREECLUBAMIS= '$date_entree_club'
+				where NUMAMIS ='$num'";
+			PdoGsb::$monPdo->exec($req);
+		}
 	
 
 /**
@@ -101,6 +109,24 @@ class PdoGsb{
 			$req = "delete from matable where monchamps1 =$param1 ";
 			PdoGsb::$monPdo->exec($req);
 		}
+
+		
+		public function pdo_suppr_amis ($num) {
+			$req="DELETE FROM amis WHERE NUMAMIS = '$num'";
+			PdoGsb::$monPdo->exec($req);
+		}
+
+		
+	/**
+	 * Suppression d'une action
+	 
+	 * @param $id identifiant action 
+	*/
+		public function pdo_sup_action($id){
+			$req = "delete from action where NUMACTION =$id";
+			PdoGsb::$monPdo->exec($req);
+		}
+		
 
 /**
  * FONCTION PERMETTANT DE RETOURNER UNE LIGNE
@@ -121,12 +147,38 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
+		public function pdo_getListeAmis()
+		{
+			$req = "select * from amis ";
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetchAll();
+			return $laLigne;
+		}
+		
 
 /**
  * AUTRE
  */
+<<<<<<< HEAD:www/include/class.pdoamis.inc.php
 
 	
  
+=======
+ 
+ /**
+	 * Description de la fonction
+	 
+	 * @param aucun 
+	*/	
+		public function pdo_get_allAction()
+		{
+			$req = "select * from action";
+			
+			$res = PdoGsb::$monPdo->query($req);
+			
+			return $res->fetchAll();
+		}
+
+>>>>>>> 0cfee66832a92dae8af6f0055e4d9bf2bdf51da7:include/class.pdoamis.inc.php
 }
 ?>
