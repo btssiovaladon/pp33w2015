@@ -1,28 +1,28 @@
-<h3>Ajouter un AMIS</h3>
-<form method='POST' action='index.php'>
+<h3>Modifier un AMIS</h3>
+<form method='POST' action='index.php?uc=liste_Amis&action=modification'>
+<input type= 'hidden' name='NUMAMIS' value='<?php echo $num; ?>'>
+<p>Nom : <input type='text' name='NOMAMIS'  size='30' maxlength='45' value='<?php echo $nom; ?>' ></p>
 
-<p>Nom : <input type='text' name='NOMAMIS'  size='30' maxlength='45' value="<?php echo $nom  ?>"></p>
+<p>Prénom : <input type='text' name='PRENOMAMIS' size='30' maxlength='45' value='<?php echo $prenom; ?>' ></p>
 
-<p>Prénom : <input type='text' name='PRENOMAMIS' size='30' maxlength='45' value="<?php echo $prenom  ?>"></p>
+<p>Téléphone fixe : <input type='text' name='TELEPHONEFIXEAMIS'  size='30' maxlength='45' value='<?php echo $tel_fix; ?>'></p>
 
-<p>Téléphone fixe : <input type='text' name='TELEPHONEFIXEAMIS'  size='30' maxlength='45'value="<?php echo $tel_fix  ?>"></p>
+<p>Téléphone portable : <input type='text' name='TELEPHONEPORTAMIS' size='30' maxlength='45' value='<?php echo $tel; ?>'></p>
 
-<p>Téléphone portable : <input type='text' name='TELEPHONEPORTAMIS' size='30' maxlength='45'value="<?php echo $tel  ?>"></p>
+<p>E-mail : <input type='text' name='EMAILAMIS' size='30' maxlength='45' value='<?php echo $email; ?>'></p>
 
-<p>E-mail : <input type='text' name='EMAILAMIS' size='30' maxlength='45' value="<?php echo $email  ?>"></p>
+<p>Numéro de rue : <input type='text' name='NUMRUEAMIS' size='30' maxlength='45' value='<?php echo $rue; ?>'></p>
 
-<p>Numéro de rue : <input type='text' name='NUMRUEAMIS' size='30' maxlength='45' value="<?php echo $num_rue  ?>"></p>
+<p>Rue : <input type='text' name='ADRESSEAMIS' size='30' maxlength='45' value='<?php echo $adresse; ?>'></p>
 
-<p>Rue : <input type='text' name='ADRESSEAMIS' size='30' maxlength='45' value="<?php echo $adresse  ?>"></p>
+<p>Ville : <input type='text' name='VILLEAMIS' size='30' maxlength='45' value='<?php echo $ville; ?>'></p>
 
-<p>Ville : <input type='text' name='VILLEAMIS' size='30' maxlength='45' value="<?php echo $ville  ?>"></p>
+<p>Code postal : <input type='text' name='CPAMIS' size='30' maxlength='45' value='<?php echo $cp; ?>'></p>
 
-<p>Code postal : <input type='text' name='CPAMIS' size='30' maxlength='45' value="<?php echo $cp  ?>"></p>
+<p>Date entrée dans le club : <input type='text' name='DATEENTREECLUBAMIS' value='<?php echo $date_entree_club; ?>'></p>
 
-<p>Date entrée dans le club : <input type='date' name='DATEENTRECLUBAMIS' value="<?php echo $date_entree_club  ?>"></p>
+<input type='submit' value='Valider' name='valider' >
 
-<input type='submit' value='Valider' name='valider'>
-
-<input type='reset' value='Annuler' name='annuler'>
+<input type='reset' value='Annuler' name='annuler' >
 
 </form>

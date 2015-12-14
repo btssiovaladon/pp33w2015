@@ -76,6 +76,13 @@ class PdoGsb{
 			$req = "update parametre set MONTANTCOTISATIONANNUELLE = '$montant' where NUMPARAMETRE='1'";
 			PdoGsb::$monPdo->exec($req);
 		}
+		public function pdo_maj_amis($num,$nom,$prenom,$tel_fix,$tel,$email,$rue,$adresse,$ville,$cp,$date_entree_club){
+			$req = "update amis set NOMAMIS = '$nom', PRENOMAMIS= '$prenom', TELEPHONEFIXEAMIS = '$tel_fix', TELEPHONEPORTAMIS= '$tel',
+						EMAILAMIS = '$email', NUMRUEAMIS= '$rue', ADRESSEAMIS = '$adresse', VILLEAMIS= '$ville',
+						CPAMIS = '$cp', DATEENTREECLUBAMIS= '$date_entree_club'
+				where NUMAMIS ='$num'";
+			PdoGsb::$monPdo->exec($req);
+		}
 	
 
 /**
@@ -89,6 +96,10 @@ class PdoGsb{
 	*/
 		public function pdo_sup($param1){
 			$req = "delete from matable where monchamps1 =$param1 ";
+			PdoGsb::$monPdo->exec($req);
+		}
+		public function pdo_suppr_amis ($num) {
+			$req="DELETE FROM amis WHERE NUMAMIS = '$num'";
 			PdoGsb::$monPdo->exec($req);
 		}
 
@@ -111,6 +122,14 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
+		public function pdo_getListeAmis()
+		{
+			$req = "select * from amis ";
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetchAll();
+			return $laLigne;
+		}
+		
 
 /**
  * AUTRE
