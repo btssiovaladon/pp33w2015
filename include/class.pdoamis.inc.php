@@ -98,10 +98,24 @@ class PdoGsb{
 			$req = "delete from matable where monchamps1 =$param1 ";
 			PdoGsb::$monPdo->exec($req);
 		}
+
+		
 		public function pdo_suppr_amis ($num) {
 			$req="DELETE FROM amis WHERE NUMAMIS = '$num'";
 			PdoGsb::$monPdo->exec($req);
 		}
+
+		
+	/**
+	 * Suppression d'une action
+	 
+	 * @param $id identifiant action 
+	*/
+		public function pdo_sup_action($id){
+			$req = "delete from action where NUMACTION =$id";
+			PdoGsb::$monPdo->exec($req);
+		}
+		
 
 /**
  * FONCTION PERMETTANT DE RETOURNER UNE LIGNE
@@ -134,5 +148,20 @@ class PdoGsb{
 /**
  * AUTRE
  */
+ 
+ /**
+	 * Description de la fonction
+	 
+	 * @param aucun 
+	*/	
+		public function pdo_get_allAction()
+		{
+			$req = "select * from action";
+			
+			$res = PdoGsb::$monPdo->query($req);
+			
+			return $res->fetchAll();
+		}
+
 }
 ?>
