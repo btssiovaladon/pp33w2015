@@ -1,4 +1,6 @@
 <?php
+require_once ("include/class.pdoamis.inc.php");
+$pdo=new PdoGsb();
 $action = $_REQUEST['action'];
 switch($action){
 	case 'ajouteramis':{
@@ -12,10 +14,18 @@ switch($action){
 		$villeAmis = $_REQUEST['VILLEAMIS'];
 		$CPAmis = $_REQUEST['CPAMIS'];
 		$DateEntreClubAmis = $_REQUEST['DATEENTRECLUBAMIS'];
-		amis_cree($nomAmis, $prenomAmis, $telephoneFixeAmis, $telephonePortAmis, $emailAmis, $numRueAmis, $adresseAmis, $adresseAmis, $villeAmis, $CPAmis, $DateEntreClubAmis);
+		$pdo->amis_cree($nomAmis, $prenomAmis, $telephoneFixeAmis, $telephonePortAmis, $emailAmis, $numRueAmis, $adresseAmis, $villeAmis, $CPAmis, $DateEntreClubAmis);
 		break;
 		}
+	
+	case 'afficher':{
+		echo 'index.php';
+		break;
 	}
+}
+	
 
+	
+ 
 
 	?>

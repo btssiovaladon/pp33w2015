@@ -19,7 +19,7 @@
 
 <p>Code postal : <input type='text' name='CPAMIS' size='30' maxlength='45'></p>
 
-<p>Date entrée dans le club : <input type='date' name='DATEENTRECLUBAMIS'></p>
+<p>Date entrée dans le club : <input type='text' name='DATEENTRECLUBAMIS'> <br><i><font size="2px">*Saisir au format jj/mm/aaaa</font></i></p>
 
 <input type='submit' value='Valider' name='valider'>
 

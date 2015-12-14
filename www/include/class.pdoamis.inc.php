@@ -1,4 +1,6 @@
 <?php
+
+
 /** 
  * Classe d'accès aux données. 
  
@@ -10,7 +12,7 @@
  * $monPdoGsb qui contiendra l'unique instance de la classe
  
  * @package default
- * @author 	Lucas
+ * @author 	LucasTg
  * @version 1.0
  * @link 	http://www.php.net/manual/fr/book.pdo.php
  */
@@ -20,8 +22,8 @@ class PdoGsb{
       	private static $bdd='dbname=BDAMIS';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+		static $monPdo;
+		static $monPdoGsb=null;
 		
 		
 	
@@ -54,6 +56,14 @@ class PdoGsb{
 			PdoGsb::$monPdo->exec($req);
 		}
 
+		public function amis_cree($nomAmis, $prenomAmis, $telephoneFixeAmis, $telephonePortAmis, $emailAmis, $numRueAmis, $adresseAmis, $villeAmis, $CPAmis, $DateEntreClubAmis){
+			//$dateFr = convdate($DateEntreClubAmis);
+			$dateEng = $DateEntreClubAmis;
+			$dateEng = implode('-',array_reverse (explode('/',$dateEng)));
+			$req = "insert into amis(NOMAMIS, PRENOMAMIS, TELEPHONEFIXEAMIS, TELEPHONEPORTAMIS, EMAILAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS, DATEENTREECLUBAMIS) values('$nomAmis', '$prenomAmis', '$telephoneFixeAmis', '$telephonePortAmis', '$emailAmis', '$numRueAmis', '$adresseAmis', '$villeAmis', '$CPAmis', '$dateEng')";
+			PdoGsb::$monPdo->exec($req);
+		}	
+	
 /**
  * FONCTION PERMETTANT DE METTRE A JOUR UNE LIGNE
  */
@@ -116,6 +126,7 @@ class PdoGsb{
  * AUTRE
  */
 
+	
  
 }
 ?>
