@@ -1,0 +1,52 @@
+<?php
+	//INCLUDE
+ 
+	$co = fun_connexion_pdo();
+ 
+	//REQUETES
+	$afficher_action = $co->query('SELECT * FROM ACTION');
+ 
+	$afficher_Naction = $co->prepare('SELECT NOM_ACTION FROM ACTION WHERE N_ACTION=:num');
+	$afficher_Naction->execute( array("num" => $_POST['list']) );
+ 
+	$ligneNom = $afficher_Naction->fetch();
+?>
+ 
+<center>
+ 
+	<form name="form_saisie_action" action="#" method="post">
+		<select name="list">
+			<?php foreach ($afficher_action as $ligne){ ?>
+				<option value="<?php echo $ligne['N_ACTION'];?>"><?php echo $ligne['NOM_ACTION'];?></option>
+			<?php } ?>	
+		</select>
+		<input type="submit" name="btn_valider"/>
+	</form> 
+ 
+ 
+<?php if (isset($_POST['list'])){ ?>
+ 
+<table border ="2" bordercolor = "black">
+<tr>
+	<th>Nom Activit&eacute;</th>
+	<th>Ajouter un participant</th>
+	<th>Consulter</th>
+	<th>Modifier l'activit&eacute;</th>
+	<th>Suprimer l'activit&eacute;</th>
+	<th>Imprimer</th>
+	<th>Imprimer &eacute;tiquettes</th>
+</tr>
+ 
+ 
+<tr>
+	<td><center><?php echo $ligneNom['NOM_ACTION']; ?></center></td>
+	<td><center><a href="?page=&id=<?php echo $_POST['list'];?>"><img src="image/tableau_des_actions/add-icon.png" width="32" height="32"/></a></center></td>
+	<td><center><a href=" "><img src="image/tableau_des_actions/icone_consulter.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/tableau_des_actions/modifier.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/tableau_des_actions/delete-icon.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/tableau_des_actions/logo_imprimante.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/tableau_des_actions/etiquette-icone.png" width="32" height="32" /></a></center></td>
+</tr>
+</table>
+</center>
+<?php } ?>
