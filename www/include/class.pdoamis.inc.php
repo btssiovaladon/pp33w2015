@@ -20,13 +20,16 @@ class PdoGsb{
       	private static $bdd='dbname=bdamis';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+		static $monPdo;
+		static $monPdoGsb=null;
+		
+		
+	
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
  */				
-	private function __construct(){
+	public function __construct(){
     	PdoGsb::$monPdo = new PDO(PdoGsb::$serveur.';'.PdoGsb::$bdd, PdoGsb::$user, PdoGsb::$mdp); 
 		PdoGsb::$monPdo->query("SET CHARACTER SET utf8");
 	}
@@ -68,7 +71,12 @@ class PdoGsb{
 			where monchamps3 ='$param3'";
 			PdoGsb::$monPdo->exec($req);
 		}
-	}
+		
+		public function majCotisation($montant){
+			$req = "update parametre set MONTANTCOTISATIONANNUELLE = '$montant' where NUMPARAMETRE='1'";
+			PdoGsb::$monPdo->exec($req);
+		}
+	
 
 /**
  * FONCTION PERMETTANT DE SUPPRIMER UNE LIGNE
