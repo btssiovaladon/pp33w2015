@@ -111,7 +111,26 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
-
+		
+		public function pdo_getAmisAll()
+		{
+			$req = "select NUMAMIS, NOMAMIS, PRENOMAMIS from amis";
+			$res = PdoGsb::$monPdo->query($req);
+			return $res->fetchAll();
+			
+		}
+		
+		public function pdo_getAfficherReleveAnnuel($id){
+			$req="select d.DATEDINER, d.LIEUDINER, d.PRIXDINER 
+				from manger m inner join diner d on m.NUMDINER=d.NUMDINER 
+						inner join amis a on m.NUMAMIS=a.NUMAMIS 
+				where m.NUMAMIS='$id'";
+			$res1=PdoGsb::$monPdo->query($req);
+			return $res1->fetch();
+			
+			
+		}
+			
 /**
  * AUTRE
  */
