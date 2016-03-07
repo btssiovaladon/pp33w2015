@@ -111,9 +111,41 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
-
+		
+		
+		public function getAction($idAction)
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION WHERE NUMACTION='.$idAction;
+			$res=PdoGsb::$monPdo->query($sql);
+			return $res->fetch();
+		}
+		
 /**
  * AUTRE
  */
+
+/**
+ * FONCTION PERMETTANT LE CHOIX DES ACTIONS
+ */
+
+	/**
+	 * Description de la fonction
+	 
+	*/	
+		public function getAllAction()
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION';
+			$res=PdoGsb::$monPdo->query($sql);
+			
+			return $res->fetchAll();
+		}
+		
+		
+		
+/**
+ * AUTRE
+ */
+ 
+
 }
 ?>
