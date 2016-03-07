@@ -202,6 +202,36 @@ class PdoGsb{
 			return $resultat;
 		}
 		
+		/* Nabil - 
+	*/
+		function pdo_getAllAmis()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `amis`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
+		
+		function pdo_getAllCommission()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `commission`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
+		
 /**
  * AUTRE
  */

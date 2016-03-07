@@ -7,7 +7,8 @@
 	switch($action){
 		case 'afficher':
 			
-			//$lesAmis=$pdo->getAllAmis();
+			$lesAmis=$pdo->pdo_getAllAmis();
+			$lesCommisions=$pdo->pdo_getAllAmis();
 			//$lesCommissins..
 			include ('./vue/v_creation_action.php');
 			break;
