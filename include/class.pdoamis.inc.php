@@ -186,17 +186,29 @@ class PdoGsb{
 			return $res->fetchAll();
 		}
 		
-		
+	/* Xavier - 
+	*/
+		function pdo_getAllAction()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `action`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat;
+		}
 		
 /**
  * AUTRE
  */
-<<<<<<< HEAD:www/include/class.pdoamis.inc.php
+
 
 	
- 
-=======
- 
+
 
  /**
 	 * Description de la fonction
@@ -211,10 +223,6 @@ class PdoGsb{
 			
 			return $res->fetchAll();
 		}
-<<<<<<< HEAD
 
->>>>>>> 0cfee66832a92dae8af6f0055e4d9bf2bdf51da7:include/class.pdoamis.inc.php
-=======
->>>>>>> f2f6a80893542d39634e553e38e08327e5e478e3
 }
 ?>

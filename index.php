@@ -1,12 +1,8 @@
 <?php
- if(isset($_REQUEST['action'])){
-	$action = $_REQUEST['action'];
-	switch($action){
-		case 'ajouteramis':
-			include("controleur/c_amis.php");
-			break;
-	}
- }
+
+include('./controleur/c_ModSupAction.php');
+
 ?>
 
-<a href="vue/v_ajout_amis.php">Ajout amis</a>
+ 
+
