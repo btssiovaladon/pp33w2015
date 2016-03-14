@@ -1,17 +1,8 @@
 <h3>Ajouter une ACTION</h3>
-<form method='POST' action='index.php?uc="creation_action&action="ajouter_action"'>
-
-<p>
-Ami : <select  name='selectAmis'>
-	  <?php
-		foreach($lesAmis as $unAmi){
-			echo "<option value='$unAmi[NUMAMIS]'>$unAmi[NOMAMIS]</option>";
-		}
-	  ?>
-	  </select>
-
-</p>
-
+<form method='POST' action='index.php?uc=creation_action&action=ajouter_action'>
+<?php
+include ('js/listeAutoComplet.php');
+?>
 <p>Commisssion : <select  name='selectCommissions'>
 	  <?php
 		foreach($lesCommisions as $uneCommisions){

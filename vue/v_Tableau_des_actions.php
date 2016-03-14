@@ -1,12 +1,13 @@
 <center>
  
 	<form name="form_saisie_action" action="index.php?uc=Tableau_des_actions&action=choixlist" method="post">
-		<select name="list" onchange="submit()">
+		<select name="list" onchange="this.form.submit()">
+			<option value="">Choisir une actions...</option>
 			<?php foreach ($listeAction as $ligne){ ?>
 				<option value="<?php echo $ligne['NUMACTION'];?>"><?php echo $ligne['NOMACTION'];?></option>
 			<?php } ?>	
 		</select>
-		<input type="submit" name="btn_valider"/>
+	
 	</form> 
  
  
@@ -25,12 +26,12 @@
  
 <tr>
 	<td><center><?php echo $action['NOMACTION']; ?></center></td>
-	<td><center><a href="?page=&id=<?php echo $_POST['list'];?>"><img src="./image/Img_tableau_des_actions/add-icon.png" width="32" height="32"/></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/icone_consulter.png" width="32" height="32" /></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/modifier.png" width="32" height="32" /></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/delete-icon.png" width="32" height="32" /></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/logo_imprimante.png" width="32" height="32" /></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/etiquette-icone.png" width="32" height="32" /></a></center></td>
+	<td><center><a href="?uc=&action=&id=<?php echo $_POST['list'];?>"><img src="image/add-icon.png" width="32" height="32"/></a></center></td>
+	<td><center><a href=" "><img src="image/	icone_consulter.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/modifier.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/delete-icon.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/logo_imprimante.png" width="32" height="32" /></a></center></td>
+	<td><center><a href=" "><img src="image/etiquette-icone.png" width="32" height="32" /></a></center></td>
 </tr>
 </table>
 </center>
