@@ -3,7 +3,7 @@
 Veuillez saisir un nom:
 <input type="text" id ="nomPers" name="NOM_PERSONNE" onkeyup="javascript:envoipersajax(this.value)">
 </br></br>
-<select id="listePers" name="" size="15">
+<select id="listePers" name="listePers" size="15">
 
 </select>
 
