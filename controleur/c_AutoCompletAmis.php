@@ -1,7 +1,6 @@
 <?php 
-require_once ("../include/class.pdoamis.inc.php");
+require_once ("include/class.pdoamis.inc.php");
 $pdo=new PdoGsb();
-
 	
 
 	if(empty($_POST['NOM_PERSONNE']))	//Si NOM_PERSONNE est vide, on arrive sur la page et on remplit la liste avec toute la table "amis"
