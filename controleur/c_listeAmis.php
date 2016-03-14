@@ -58,5 +58,17 @@
 		
 	break;
 	}
+	case 'etiquette':{
+		$numAction=$_REQUEST['NUMACTION'];
+		$lesParticipants=$pdo->pdo_get_etiquette_participant($numAction);
+		
+		if ($lesParticipants == ''){
+			print ("Aucun participant trouvé dans la base");
+		}
+		
+		include("vue/v_etiquette_pdf.php");
+		
+	break;
+	}
 }
 ?>

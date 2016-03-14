@@ -171,7 +171,19 @@ class PdoGsb{
 			$laLigne = $res->fetchAll();
 			return $laLigne;
 		}
-		
+		/**
+		 *
+		 */
+		public function pdo_get_etiquette_participant($numAction)
+		{
+			$req = "SELECT NOMAMIS, PRENOMAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS
+					FROM amis
+					INNER JOIN participant ON participant.NUMAMIS = amis.NUMAMIS
+					WHERE participant.NUMACTION =$numAction";
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetchAll();
+			return $laLigne;
+		}
 
 
 	/**
@@ -186,7 +198,51 @@ class PdoGsb{
 			return $res->fetchAll();
 		}
 		
+	/* Xavier - 
+	*/
+		function pdo_getAllAction()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `action`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat;
+		}
 		
+		/* Nabil - 
+	*/
+		function pdo_getAllAmis()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `amis`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
+				
+		function pdo_getAllCommission()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `commission`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
 		
 /**
  * AUTRE
