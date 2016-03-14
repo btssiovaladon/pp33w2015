@@ -1,7 +1,7 @@
 <h3>Ajouter une ACTION</h3>
 <form method='POST' action='index.php?uc=creation_action&action=ajouter_action'>
 <?php
-include ('js/listeAutoComplet.php');
+include ('vue/inc_AutoComplet.php');
 ?>
 <p>Commisssion : <select  name='selectCommissions'>
 	  <?php
