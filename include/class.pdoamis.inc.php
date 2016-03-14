@@ -143,7 +143,19 @@ class PdoGsb{
 			$laLigne = $res->fetchAll();
 			return $laLigne;
 		}
-		
+		/**
+		 *
+		 */
+		public function pdo_get_etiquette_participant($numAction)
+		{
+			$req = "SELECT NOMAMIS, PRENOMAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS
+					FROM amis
+					INNER JOIN participant ON participant.NUMAMIS = amis.NUMAMIS
+					WHERE participant.NUMACTION =$numAction";
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetchAll();
+			return $laLigne;
+		}
 
 /**
  * AUTRE
