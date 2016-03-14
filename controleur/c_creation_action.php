@@ -8,8 +8,7 @@
 		case 'afficher':
 			
 			$lesAmis=$pdo->pdo_getAllAmis();
-			$lesCommisions=$pdo->pdo_getAllAmis();
-			//$lesCommissins..
+			$lesCommisions=$pdo->pdo_getAllCommission();
 			include ('./vue/v_creation_action.php');
 			break;
 			
@@ -17,6 +16,4 @@
 			echo "ajouter";
 			break;
 	}
-		
-		
 ?>

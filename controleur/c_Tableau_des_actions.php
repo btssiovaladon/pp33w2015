@@ -8,8 +8,7 @@
 			$montant = $_REQUEST['montant'];
 			$pdo->majCotisation($montant);
 			include("vue/v_form_cotisation.php");
-			break;
-		
+			break;		
 		case 'afficher':
 			$listeAction=$pdo->getAllAction();
 			include ("vue/v_Tableau_des_actions.php");

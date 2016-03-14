@@ -217,7 +217,7 @@ class PdoGsb{
 			
 			return $resultat->fetchAll();
 		}
-		
+				
 		function pdo_getAllCommission()
 		{
 			
@@ -235,10 +235,6 @@ class PdoGsb{
 /**
  * AUTRE
  */
-
-
-	
-
 
  /**
 	 * Description de la fonction
