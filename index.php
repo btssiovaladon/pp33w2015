@@ -1,12 +1,15 @@
 <?php
- if(isset($_REQUEST['action'])){
-	$action = $_REQUEST['action'];
-	switch($action){
-		case 'ajouteramis':
-			include("controleur/c_amis.php");
-			break;
-	}
- }
-?>
+$uc = $_REQUEST["uc"];
+switch($uc){
+	case "vue" :
+		include ("vue/inc_AutoComplet.php");
+		break;
+	default :
+		include ('controleur/c_AutoCompletAmis.php');
+		break;
+}
 
-<a href="vue/v_ajout_amis.php">Ajout amis</a>
+
+
+
+?>
