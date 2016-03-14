@@ -1,4 +1,6 @@
 <?php
+
+
 /** 
  * Classe d'accès aux données. 
  
@@ -10,18 +12,18 @@
  * $monPdoGsb qui contiendra l'unique instance de la classe
  
  * @package default
- * @author 	Lucas
+ * @author 	LucasTg
  * @version 1.0
  * @link 	http://www.php.net/manual/fr/book.pdo.php
  */
 
 class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=BDAMIS';   		
+      	private static $bdd='dbname=bdamis';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+		static $monPdo;
+		static $monPdoGsb=null;
 		
 		
 	
@@ -54,6 +56,15 @@ class PdoGsb{
 			PdoGsb::$monPdo->exec($req);
 		}
 
+		public function amis_cree($nomAmis, $prenomAmis, $telephoneFixeAmis, $telephonePortAmis, $emailAmis, $numRueAmis, $adresseAmis, $villeAmis, $CPAmis, $DateEntreClubAmis){
+			//$dateFr = convdate($DateEntreClubAmis);
+			$dateEng = $DateEntreClubAmis;
+			$dateEng = implode('-',array_reverse (explode('/',$dateEng)));
+			$req = "insert into amis(NOMAMIS, PRENOMAMIS, TELEPHONEFIXEAMIS, TELEPHONEPORTAMIS, EMAILAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS, DATEENTREECLUBAMIS) values('$nomAmis', '$prenomAmis', '$telephoneFixeAmis', '$telephonePortAmis', '$emailAmis', '$numRueAmis', '$adresseAmis', '$villeAmis', '$CPAmis', '$dateEng')";
+			PdoGsb::$monPdo->exec($req);
+		}	
+	
+	
 /**
  * FONCTION PERMETTANT DE METTRE A JOUR UNE LIGNE
  */
@@ -136,6 +147,23 @@ class PdoGsb{
 			$laLigne = $res->fetch();
 			return $laLigne;
 		}
+		
+		
+		public function getAction($idAction)
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION WHERE NUMACTION='.$idAction;
+			$res=PdoGsb::$monPdo->query($sql);
+			return $res->fetch();
+		}
+		
+/**
+ * AUTRE
+ */
+
+/**
+ * FONCTION PERMETTANT LE CHOIX DES ACTIONS
+ */
+
 		public function pdo_getListeAmis()
 		{
 			$req = "select * from amis ";
@@ -157,10 +185,69 @@ class PdoGsb{
 			return $laLigne;
 		}
 
+
+	/**
+	 * Description de la fonction
+	 
+	*/	
+		public function getAllAction()
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION';
+			$res=PdoGsb::$monPdo->query($sql);
+			
+			return $res->fetchAll();
+		}
+		
+	/* Xavier - 
+	*/
+		function pdo_getAllAction()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `action`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat;
+		}
+		
+		/* Nabil - 
+	*/
+		function pdo_getAllAmis()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `amis`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
+				
+		function pdo_getAllCommission()
+		{
+			
+
+			$requete_selection ='SELECT * FROM `commission`';
+
+
+			$resultat=PdoGsb::$monPdo-> prepare($requete_selection);
+			
+			$resultat->execute(array());
+			
+			return $resultat->fetchAll();
+		}
+		
 /**
  * AUTRE
  */
- 
+
  /**
 	 * Description de la fonction
 	 
