@@ -261,6 +261,50 @@ class PdoGsb{
 			
 			return $res->fetchAll();
 		}
+		
+		/* Jérémy */
+		
+		public function getChefAction($numAction){
+			$req="select NUMAMIS from action where NUMACTION=?";
+			$res = PdoGsb::$monPdo->prepare($req);
+			$res->bindParam(1, $numAction);
+			$res->execute();
+			$numAmis = $res->fetch();
+			
+			$req2="select NOMAMIS, PRENOMAMIS from amis where NUMAMIS=?";
+			$res2 = PdoGsb::$monPdo->prepare($req2);
+			$res2->bindParam(1, $numAmis['NUMAMIS']);
+			$res2->execute();
+			$chef=$res2->fetch();
+			return $chef;
+		}
+		
+		public function getParticipantAction($numAction){
+			$req="select NOMAMIS,PRENOMAMIS from participant inner join amis on participant.NUMAMIS=amis.NUMAMIS where NUMACTION=?";
+			$res = PdoGsb::$monPdo->prepare($req);
+			$res->bindParam(1, $numAction);
+			$res->execute();
+			$listeAmis= $res->fetchAll();
+			return $listeAmis;
+		}
+		
+		public function getParticipation($numAction,$numParticipant){
+			$req="select NUMACTION from participant where NUMACTION=? and NUMAMIS=?";
+			$res = PdoGsb::$monPdo->prepare($req);
+			$res->bindParam(1, $numAction);
+			$res->bindParam(2, $numParticipant);
+			$res->execute();
+			$Participation= $res->fetch();
+			return $Participation;
+		}
+		
+		public function insertParticipation($numAction,$numParticipant){
+			$req="insert into participant values (?,?)";
+			$res = PdoGsb::$monPdo->prepare($req);
+			$res->bindParam(1, $numAction);
+			$res->bindParam(2, $numParticipant);
+			$res->execute();
+		}
 
 }
 ?>

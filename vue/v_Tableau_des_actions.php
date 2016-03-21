@@ -26,7 +26,7 @@
  
 <tr>
 	<td><center><?php echo $action['NOMACTION']; ?></center></td>
-	<td><center><a href="?uc=&action=&id=<?php echo $_POST['list'];?>"><img src="image/add-icon.png" width="32" height="32"/></a></center></td>
+	<td><center><a href="?uc=ajoutParticipant&action=Afficher&id=<?php echo $_POST['list'];?>"><img src="image/add-icon.png" width="32" height="32"/></a></center></td>
 	<td><center><a href=" "><img src="image/	icone_consulter.png" width="32" height="32" /></a></center></td>
 	<td><center><a href=" "><img src="image/modifier.png" width="32" height="32" /></a></center></td>
 	<td><center><a href=" "><img src="image/delete-icon.png" width="32" height="32" /></a></center></td>

@@ -17,7 +17,7 @@ $(document).ready(function() {	//Initialisation de la liste au demarrage
 function envoipersajax(nom)
 {
 	var requete= $.ajax({ // ajax :la variable requete envoie un objet XMLHttpRequest.
-	url: "index.php?uc=c_AutoCompletAmis&action=", // url de la page à charger
+	url: "index.php?uc=AutoCompletAmis&action=", // url de la page à charger
 	type:"POST",
 	data:"NOM_PERSONNE=" + escape(nom),//les données à envoyer avec l’URL. (voir page suivante ce que fait la page getpersonne.php
 	//cache: false, // pas de mise en cache
