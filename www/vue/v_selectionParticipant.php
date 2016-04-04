@@ -1,6 +1,6 @@
 <div id="contenu">
 	<h3>Sélection d'un participant</h3>
-		<form method="POST" action="../index.php?uc=cotisation&action=AfficherListeParticipant">
+		<form method="POST" action="../index.php?uc=cotisation&action=choixParticipant">
 			<div class="">
 				<fieldset>
 					<label>Participant :</label>

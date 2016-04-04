@@ -1,6 +1,6 @@
 <div id="contenu">
 	<h3>Saisie cotisation annuelle</h3>
-		<form method="POST" action="../index.php?uc=cotisation&action=validerMajMontantCotisation">
+		<form method="POST" action="index.php?uc=cotisation&action=MAJ">
 			<div class="">
 			
 				<fieldset>

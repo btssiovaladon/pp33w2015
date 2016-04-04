@@ -1,4 +1,6 @@
 <?php
+
+
 /** 
  * Classe d'accès aux données. 
  
@@ -10,18 +12,18 @@
  * $monPdoGsb qui contiendra l'unique instance de la classe
  
  * @package default
- * @author 	Lucas
+ * @author 	LucasTg
  * @version 1.0
  * @link 	http://www.php.net/manual/fr/book.pdo.php
  */
 
 class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=BDAMIS';   		
+      	private static $bdd='dbname=bdamis';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+		static $monPdo;
+		static $monPdoGsb=null;
 		
 		
 	
@@ -54,6 +56,15 @@ class PdoGsb{
 			PdoGsb::$monPdo->exec($req);
 		}
 
+		public function amis_cree($nomAmis, $prenomAmis, $telephoneFixeAmis, $telephonePortAmis, $emailAmis, $numRueAmis, $adresseAmis, $villeAmis, $CPAmis, $DateEntreClubAmis){
+			//$dateFr = convdate($DateEntreClubAmis);
+			$dateEng = $DateEntreClubAmis;
+			$dateEng = implode('-',array_reverse (explode('/',$dateEng)));
+			$req = "insert into amis(NOMAMIS, PRENOMAMIS, TELEPHONEFIXEAMIS, TELEPHONEPORTAMIS, EMAILAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS, DATEENTREECLUBAMIS) values('$nomAmis', '$prenomAmis', '$telephoneFixeAmis', '$telephonePortAmis', '$emailAmis', '$numRueAmis', '$adresseAmis', '$villeAmis', '$CPAmis', '$dateEng')";
+			PdoGsb::$monPdo->exec($req);
+		}	
+	
+	
 /**
  * FONCTION PERMETTANT DE METTRE A JOUR UNE LIGNE
  */
@@ -76,6 +87,13 @@ class PdoGsb{
 			$req = "update parametre set MONTANTCOTISATIONANNUELLE = '$montant' where NUMPARAMETRE='1'";
 			PdoGsb::$monPdo->exec($req);
 		}
+		public function pdo_maj_amis($num,$nom,$prenom,$tel_fix,$tel,$email,$rue,$adresse,$ville,$cp,$date_entree_club){
+			$req = "update amis set NOMAMIS = '$nom', PRENOMAMIS= '$prenom', TELEPHONEFIXEAMIS = '$tel_fix', TELEPHONEPORTAMIS= '$tel',
+						EMAILAMIS = '$email', NUMRUEAMIS= '$rue', ADRESSEAMIS = '$adresse', VILLEAMIS= '$ville',
+						CPAMIS = '$cp', DATEENTREECLUBAMIS= '$date_entree_club'
+				where NUMAMIS ='$num'";
+			PdoGsb::$monPdo->exec($req);
+		}
 	
 
 /**
@@ -91,6 +109,24 @@ class PdoGsb{
 			$req = "delete from matable where monchamps1 =$param1 ";
 			PdoGsb::$monPdo->exec($req);
 		}
+
+		
+		public function pdo_suppr_amis ($num) {
+			$req="DELETE FROM amis WHERE NUMAMIS = '$num'";
+			PdoGsb::$monPdo->exec($req);
+		}
+
+		
+	/**
+	 * Suppression d'une action
+	 
+	 * @param $id identifiant action 
+	*/
+		public function pdo_sup_action($id){
+			$req = "delete from action where NUMACTION =$id";
+			PdoGsb::$monPdo->exec($req);
+		}
+		
 
 /**
  * FONCTION PERMETTANT DE RETOURNER UNE LIGNE
@@ -112,27 +148,98 @@ class PdoGsb{
 			return $laLigne;
 		}
 		
+		
+		public function getAction($idAction)
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION WHERE NUMACTION='.$idAction;
+			$res=PdoGsb::$monPdo->query($sql);
+			return $res->fetch();
+		}
+		
+		
 		public function pdo_getAmisAll()
 		{
 			$req = "select NUMAMIS, NOMAMIS, PRENOMAMIS from amis";
 			$res = PdoGsb::$monPdo->query($req);
-			return $res->fetchAll();
-			
+			return $res;
 		}
 		
-		public function pdo_getAfficherReleveAnnuel($id){
-			$req="select d.DATEDINER, d.LIEUDINER, d.PRIXDINER 
-				from manger m inner join diner d on m.NUMDINER=d.NUMDINER 
-						inner join amis a on m.NUMAMIS=a.NUMAMIS 
-				where m.NUMAMIS='$id'";
-			$res1=PdoGsb::$monPdo->query($req);
-			return $res1->fetch();
+		
+		public function pdo_getMontant($id)
+		{
+			$req = 'SELECT PRENOMAMIS, NOMAMIS, NBPARTICIPANT, DATEDINER, PRIXDINER, LIEUDINER,  NBPARTICIPANT*PRIXDINER AS montant FROM `amis` a INNER JOIN `manger` m ON a.NUMAMIS=m.NUMAMIS INNER JOIN `diner` d ON m.NUMDINER=d.NUMDINER WHERE a.NUMAMIS='.$id;
 			
-			
+			$res = PdoGsb::$monPdo->query($req);
+			return $res;
 		}
-			
+		
+		public function pdo_getMontantCotisation()
+		{
+			$req = 'SELECT MONTANTCOTISATIONANNUELLE FROM `parametre` ';
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetch();
+			return $laLigne['MONTANTCOTISATIONANNUELLE'];
+		}
+		
+		
+		
 /**
  * AUTRE
  */
+
+/**
+ * FONCTION PERMETTANT LE CHOIX DES ACTIONS
+ */
+
+		public function pdo_getListeAmis()
+		{
+			$req = "select * from amis ";
+			$res = PdoGsb::$monPdo->query($req);
+			$laLigne = $res->fetchAll();
+			return $laLigne;
+		}
+		
+
+
+	/**
+	 * Description de la fonction
+	 
+	*/	
+		public function getAllAction()
+		{
+			$sql='SELECT NUMACTION,NOMACTION FROM ACTION';
+			$res=PdoGsb::$monPdo->query($sql);
+			
+			return $res->fetchAll();
+		}
+		
+		
+		
+/**
+ * AUTRE
+ */
+
+
+	
+ 
+
+ 
+
+ /**
+	 * Description de la fonction
+	 
+	 * @param aucun 
+	*/	
+		public function pdo_get_allAction()
+		{
+			$req = "select * from action";
+			
+			$res = PdoGsb::$monPdo->query($req);
+			
+			return $res->fetchAll();
+		}
+
+
+
 }
 ?>
