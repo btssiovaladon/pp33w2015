@@ -1,4 +1,18 @@
-<!-- Page à inclure à l'endroit où on veut la liste -->
+<!-- Pour l'utiliser, il faut ajouter dans l'index :
+
+$ajax = $_REQUEST["ajax"];
+switch($ajax){
+	default :
+		include ('controleur/c_AutoCompletAmis.php');
+		break;
+}
+ 
+Puis dans la page où on souhaite afficher la liste :
+		
+	include ("vue/inc_AutoComplet.php");
+	
+
+ -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 Veuillez saisir un nom:
 <input type="text" id ="nomPers" name="NOM_PERSONNE" onkeyup="javascript:envoipersajax(this.value)">
@@ -17,7 +31,7 @@ $(document).ready(function() {	//Initialisation de la liste au demarrage
 function envoipersajax(nom)
 {
 	var requete= $.ajax({ // ajax :la variable requete envoie un objet XMLHttpRequest.
-	url: "index.php?uc=c_AutoCompletAmis&action=", // url de la page à charger
+	url: "index.php?ajax=c_AutoCompletAmis&action=", // url de la page à charger
 	type:"POST",
 	data:"NOM_PERSONNE=" + escape(nom),//les données à envoyer avec l’URL. (voir page suivante ce que fait la page getpersonne.php
 	//cache: false, // pas de mise en cache
@@ -50,7 +64,4 @@ function envoipersajax(nom)
 	});
 	return;
 }
-
-
-
 </script>
