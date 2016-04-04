@@ -9,5 +9,16 @@
 			$montantCotisationAnnuel = $pdo->pdo_getMontantCotisation();
 			include ("vue/v_pdfReleveAmi.php");
 			break;
+	
+	$action = $_REQUEST['action'];
+	switch($action){
+		case 'validerMajMontantCotisation':
+			$montant = $_REQUEST['montant'];
+			$pdo->majCotisation($montant);
+			include("vue/v_form_cotisation.php");
+			break;
+		
+		case 'afficher':
+			include ("vue/v_form_cotisation.php");
 	}
 ?>
