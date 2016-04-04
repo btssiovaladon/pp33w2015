@@ -1,6 +1,6 @@
 <center>
  
-	<form name="form_saisie_action" action="index.php?uc=Tableau_des_actions&action=choixlist" method="post">
+	<form name="form_saisie_action" action="index.php?uc=tableau_actions&action=choixlist" method="post">
 		<select name="list" onchange="submit()">
 			<?php foreach ($listeAction as $ligne){ ?>
 				<option value="<?php echo $ligne['NUMACTION'];?>"><?php echo $ligne['NOMACTION'];?></option>
@@ -10,7 +10,10 @@
 	</form> 
  
  
-<?php if (isset($_POST['list'])){ ?>
+<?php if (isset($_POST['list'])){ 
+
+echo $_POST['list']
+?>
  
 <table border ="2" bordercolor = "black">
 <tr>
@@ -30,7 +33,7 @@
 	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/modifier.png" width="32" height="32" /></a></center></td>
 	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/delete-icon.png" width="32" height="32" /></a></center></td>
 	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/logo_imprimante.png" width="32" height="32" /></a></center></td>
-	<td><center><a href=" "><img src="./image/Img_tableau_des_actions/etiquette-icone.png" width="32" height="32" /></a></center></td>
+	<td><center><a href="index.php?uc=liste_Amis&action=etiquette&NUMACTION=<?php echo $_POST['list'];?>"><img src="./image/Img_tableau_des_actions/etiquette-icone.png" width="32" height="32" /></a></center></td>
 </tr>
 </table>
 </center>

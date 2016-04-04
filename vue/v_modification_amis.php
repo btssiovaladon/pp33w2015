@@ -5,7 +5,7 @@
 
 <p>Prénom : <input type='text' name='PRENOMAMIS' size='30' maxlength='45' value='<?php echo $prenom; ?>' ></p>
 
-<p>Téléphone fixe : <input type='text' name='TELEPHONEFIXEAMIS'  size='30' maxlength='45' value='<?php echo $tel_fix; ?>'></p>
+<p>Téléphone fixe : <input type='text' name='TELEPHONEFIXEAMIS'  size='10' maxlength='45' value='<?php echo $tel_fix; ?>'></p>
 
 <p>Téléphone portable : <input type='text' name='TELEPHONEPORTAMIS' size='30' maxlength='45' value='<?php echo $tel; ?>'></p>
 
@@ -19,7 +19,7 @@
 
 <p>Code postal : <input type='text' name='CPAMIS' size='30' maxlength='45' value='<?php echo $cp; ?>'></p>
 
-<p>Date entrée dans le club : <input type='text' name='DATEENTREECLUBAMIS' value='<?php echo $date_entree_club; ?>'></p>
+<p>Date entrée dans le club : <input type='date' name='DATEENTREECLUBAMIS' value='<?php echo $date_entree_club; ?>'></p>
 
 <input type='submit' value='Valider' name='valider' >
 
