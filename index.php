@@ -3,7 +3,9 @@
 require_once ("include/class.pdoamis.inc.php");
 
 
-	$uc = $_REQUEST['uc'];
+
+	if (isset($_REQUEST['uc'])) $uc=$_REQUEST['uc'];
+	if (isset($_REQUEST['pdf'])) $uc=$_REQUEST['pdf'];
 	switch($uc){
 		case 'tableau_actions':
 			include("controleur/c_Tableau_des_actions.php");

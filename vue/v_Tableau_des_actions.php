@@ -43,7 +43,7 @@ echo $_POST['list']
 	<td><center><a href=" "><img src="image/modifier.png" width="32" height="32" /></a></center></td>
 	<td><center><a href=" "><img src="image/delete-icon.png" width="32" height="32" /></a></center></td>
 	<td><center><a href="./vue/v_impressionListeAmis_fonction.php"><img src="image/logo_imprimante.png" width="32" height="32" /></a></center></td>
-	<td><center><a href="index.php?uc=liste_Amis&action=etiquette&NUMACTION=<?php echo $_POST['list'];?>"><img src="./image/etiquette-icone.png" width="32" height="32" /></a></center></td>
+	<td><center><a href="index.php?pdf=liste_Amis&action=etiquette&NUMACTION=<?php echo $_POST['list'];?>"><img src="./image/etiquette-icone.png" width="32" height="32" /></a></center></td>
 
 </tr>
 </table>
