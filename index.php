@@ -15,8 +15,19 @@ require_once ("include/class.pdoamis.inc.php");
 		case "creation_action":
 			include("controleur/c_creation_action.php");
 			break;
-	
-	}
+
+//$uc = "c_AutoCompletAmis";
+switch($uc){
+	case "c_AutoCompletAmis" :
+
+		include ('controleur/c_AutoCompletAmis.php');
+		break;
+	default:
+		include("vue/test.php");
+		
+}
+
+	$uc = $_REQUEST['uc'];
+	include('controleur/c_'.$uc.'.php');
 
 ?>
-
