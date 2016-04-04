@@ -8,6 +8,9 @@
 		case "creation_action":
 			include("controleur/c_creation_action.php");
 			break;
-	}
-	
+			
+		case "c_AutoCompletAmis":
+		include ('controleur/c_AutoCompletAmis.php');
+		break;
+	}	
 ?>
