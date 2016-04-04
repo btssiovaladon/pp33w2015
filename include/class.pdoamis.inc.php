@@ -62,7 +62,14 @@ class PdoGsb{
 			$dateEng = implode('-',array_reverse (explode('/',$dateEng)));
 			$req = "insert into amis(NOMAMIS, PRENOMAMIS, TELEPHONEFIXEAMIS, TELEPHONEPORTAMIS, EMAILAMIS, NUMRUEAMIS, ADRESSEAMIS, VILLEAMIS, CPAMIS, DATEENTREECLUBAMIS) values('$nomAmis', '$prenomAmis', '$telephoneFixeAmis', '$telephonePortAmis', '$emailAmis', '$numRueAmis', '$adresseAmis', '$villeAmis', '$CPAmis', '$dateEng')";
 			PdoGsb::$monPdo->exec($req);
-		}	
+		}
+			
+		public function action_cree($numAmis, $selectCommissions, $nomAction, $dateDebut, $duree, $fonds){
+			//$dateFr = convdate($DateEntreClubAmis);;
+			$req = "insert into action(`NUMAMIS`, `NUMCOMMISSION`, `NOMACTION`, `DATEDEBUTACTION`, `DUREEACTION`, `FONDCOLLECTEACTION`) values('$numAmis', '$selectCommissions', '$nomAction', '$dateDebut', '$duree', '$fonds')";
+			
+			PdoGsb::$monPdo->exec($req);
+		}
 	
 	
 /**

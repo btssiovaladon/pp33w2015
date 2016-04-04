@@ -13,7 +13,7 @@
 			
 		case 'ajouter_action':
 		
-			echo "ajouter";
+		$ajouter=$pdo->action_cree($_POST['listePers'], $_POST['selectCommissions'], $_POST['NOMACTION'] , $_POST['DATEDEBUT'], $_POST['DUREE'], $_POST['FONDS']);
 			break;
 	}
 ?>

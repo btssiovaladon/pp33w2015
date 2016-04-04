@@ -6,8 +6,9 @@ include ('vue/inc_AutoComplet.php');
 <p>Commisssion : <select  name='selectCommissions'>
 	  <?php
 		foreach($lesCommisions as $uneCommisions){
-			echo "<option value='$uneCommisions[NUMCOMMISIONS]'>$uneCommisions[NOMCOMMISSION]</option>";
+			echo "<option value='$uneCommisions[NUMCOMMISSION]'>$uneCommisions[NUMCOMMISSION].$uneCommisions[NOMCOMMISSION]</option>";
 		}
+	
 	  ?>
 	  </select>
 	  </p>

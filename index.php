@@ -17,6 +17,7 @@ require_once ("include/class.pdoamis.inc.php");
 			include("controleur/c_creation_action.php");
 			break;
 
+
 		case "c_AutoCompletAmis" :
 		include ('controleur/c_AutoCompletAmis.php');
 		break;
