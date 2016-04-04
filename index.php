@@ -6,6 +6,7 @@ require_once ("include/class.pdoamis.inc.php");
 
 	if (isset($_REQUEST['uc'])) $uc=$_REQUEST['uc'];
 	if (isset($_REQUEST['pdf'])) $uc=$_REQUEST['pdf'];
+	if (isset($_REQUEST['ajax'])) $uc=$_REQUEST['ajax'];
 	switch($uc){
 		case 'tableau_actions':
 			include("controleur/c_Tableau_des_actions.php");
@@ -25,8 +26,7 @@ require_once ("include/class.pdoamis.inc.php");
 		break;
 		
 			default:
-				include("vue/test.php");
-		
+				include("vue/test.php");	
 }
 
 ?>
