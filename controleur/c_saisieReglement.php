@@ -5,7 +5,7 @@
 	
 	switch($action){
 		case 'choix':
-			include("js/listeAutoComplet.php");
+			include("vue/inc_AutoComplet.php");
 			break;
 		
 		
